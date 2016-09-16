@@ -9,7 +9,7 @@ public class Axis
 {
     private Graph graph;
 
-    public Axis(Graph graph)
+    Axis(Graph graph)
     {
         this.graph = graph;
     }

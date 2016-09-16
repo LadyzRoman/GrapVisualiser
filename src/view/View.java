@@ -55,22 +55,22 @@ public class View extends JFrame
             switch (e.getKeyCode())
             {
                 case KeyEvent.VK_ADD:
-                    getController().resize(-10);
+                    controller.resize(-10);
                     break;
                 case KeyEvent.VK_SUBTRACT:
-                    getController().resize(10);
+                    controller.resize(10);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    getController().move(-1, 0);
+                    controller.move(-1, 0);
                     break;
                 case KeyEvent.VK_LEFT:
-                    getController().move(1, 0);
+                    controller.move(1, 0);
                     break;
                 case KeyEvent.VK_UP:
-                    getController().move(0, 1);
+                    controller.move(0, 1);
                     break;
                 case KeyEvent.VK_DOWN:
-                    getController().move(0, -1);
+                    controller.move(0, -1);
                     break;
             }
         }

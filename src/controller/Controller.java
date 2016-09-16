@@ -16,7 +16,6 @@ import java.util.List;
 public class Controller
 {
     private View view;
-
     private Graph model;
 
     public Controller()
@@ -30,7 +29,7 @@ public class Controller
         }
         catch (Exception e)
         {
-
+            JOptionPane.showMessageDialog(view, e.getMessage(), "Ошибка!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -41,12 +40,12 @@ public class Controller
 
     public void createFunction()
     {
-        String rpn = model.getRpn();
+        String rpn = model.getFunction();
         try
         {
-            String function = view.getFunction();
-            String rpnFunction = ReversePolishNotationCreator.tRpn(function);
-            model.setRpn(rpnFunction);
+            String expression = view.getFunction();
+            String rpnFunction = ReversePolishNotationCreator.toReversePolishNotation(expression);
+            model.setFunction(rpnFunction);
             model.initCoordinates();
             view.requestFocus();
         }
@@ -57,7 +56,7 @@ public class Controller
         }
         catch (Exception e)
         {
-            model.setRpn(rpn);
+            model.setFunction(rpn);
             JOptionPane.showMessageDialog(view, "Введены некорректные данные!", "Ошибка!", JOptionPane.ERROR_MESSAGE);
             view.requestFunction();
         }

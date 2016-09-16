@@ -12,7 +12,7 @@ public class Coordinate
     private Coordinate prev;
     private Graph graph;
 
-    public Coordinate(double x, double y, Coordinate prev, Graph graph)
+    Coordinate(double x, double y, Coordinate prev, Graph graph)
     {
         this.x = x;
         this.y = y;
@@ -20,20 +20,30 @@ public class Coordinate
         this.graph = graph;
     }
 
+
+    double getX() {
+        return x;
+    }
+
+    double getY() {
+        return y;
+    }
+
     public void draw(Graphics g)
     {
         g.setColor(Color.DARK_GRAY);
         if (prev != null)
         {
-            if (Double.isNaN(prev.y) || Double.isNaN(y))
-                return;
             int x1 = (int) prev.x + graph.getX0();
             int y1 = (int) prev.y + graph.getY0();
             int x2 = (int) x + graph.getX0();
             int y2 = (int) y + graph.getY0();
+            //Проверка х на попадание в область
             if (x2 < 0 || x1 > Graph.SIZE) return;
+            //Проверка у на попадание в область
             if ((y1 > Graph.SIZE && y2 > Graph.SIZE)||(y1 < 0 && y2 < 0)) return;
             if ((y1 > Graph.SIZE && y2 < 0)||(y1 < 0 && y2 > Graph.SIZE)) return;
+
             g.setColor(Color.DARK_GRAY);
             g.drawLine(x1, y1, x2, y2);
         }
@@ -62,11 +72,5 @@ public class Coordinate
         return result;
     }
 
-    public double getX() {
-        return x;
-    }
 
-    public double getY() {
-        return y;
-    }
 }

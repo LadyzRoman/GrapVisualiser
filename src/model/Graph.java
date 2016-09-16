@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class Graph {
-    private String rpn;
+    private String function;
     private List<Coordinate> coordinates = new ArrayList<>();
     private List<Coordinate> currentCoordinates = new ArrayList<>();
     private double initStep;
@@ -46,16 +46,16 @@ public class Graph {
         return d;
     }
 
-    public String getRpn() {
-        return rpn;
+    public String getFunction() {
+        return function;
     }
 
-    public void setRpn(String rpn) {
-        this.rpn = rpn;
+    public void setFunction(String rpn) {
+        this.function = rpn;
     }
 
     public Graph(double minX, double maxX, double initStep) {
-        this.rpn = "";
+        this.function = "";
         this.minX = minX;
         this.maxX = maxX;
         this.initStep = initStep;
@@ -74,7 +74,7 @@ public class Graph {
     }
 
     public void initCoordinates() throws Exception {
-        if (rpn.equals(""))
+        if (function.equals(""))
             throw new EmptyStringException();
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate prev = null;
@@ -91,11 +91,11 @@ public class Graph {
 
     private double getY(double x) throws Exception {
         Stack<Double> stack = new Stack<>();
-        String[] array = rpn.split(" ");
-        for (String a : array) {
-            if (RpnHelper.isOp(a)) {
+        String[] queue = function.split(" ");
+        for (String a : queue) {
+            if (RpnHelper.isOperation(a)) {
                 Double x1 = stack.pop();
-                if (RpnHelper.isFunc(a)) {
+                if (RpnHelper.isFunction(a)) {
                     Method method = Math.class.getMethod(a, double.class);
                     x1 = (Double) method.invoke(Math.class, x1);
                 } else {

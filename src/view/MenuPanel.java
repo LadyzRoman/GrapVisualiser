@@ -33,25 +33,6 @@ public class MenuPanel extends JPanel
         funcInfo = new JTextPane();
         moveInfo = new JTextPane();
 
-        funcInfo.setText("Операции:\n" +
-                "+\t-\t*\t/\t^\t)\t(\n" +
-                "sin\tcos\ttan\tasin\tacos\tatan\tlog\n" +
-                "log10\texp\tabs\tsignum\tsqrt\tcbrt");
-        funcInfo.setBackground(view.getBackground());
-        StyledDocument doc = funcInfo.getStyledDocument();
-        SimpleAttributeSet center = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
-        funcInfo.setBorder(BorderFactory.createEtchedBorder());
-        moveInfo.setText("+\tПриблизить\n" +
-                "-\tОтдалить\n" +
-                "Стрелочки\tПеремещение");
-        moveInfo.setBackground(view.getBackground());
-        moveInfo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        doc = moveInfo.getStyledDocument();
-        doc.setParagraphAttributes(0,doc.getLength(),center,false);
-        view.getRootPane().setDefaultButton(createButton);
-        createButton.addActionListener((e) -> view.getController().createFunction());
 
 
         createButton.setText("Показать");
@@ -96,6 +77,27 @@ public class MenuPanel extends JPanel
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING))
                                 .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        funcInfo.setText("Операции:\n" +
+                "+\t-\t*\t/\t^\t)\t(\n" +
+                "sin\tcos\ttan\tasin\tacos\tatan\tlog\n" +
+                "log10\texp\tabs\tsignum\tsqrt\tcbrt");
+        funcInfo.setBackground(view.getBackground());
+        StyledDocument doc = funcInfo.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        funcInfo.setBorder(BorderFactory.createEtchedBorder());
+        moveInfo.setText("+\tПриблизить\n" +
+                "-\tОтдалить\n" +
+                "Стрелочки\tПеремещение");
+        moveInfo.setBackground(view.getBackground());
+        moveInfo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        doc = moveInfo.getStyledDocument();
+        doc.setParagraphAttributes(0,doc.getLength(),center,false);
+        view.getRootPane().setDefaultButton(createButton);
+        createButton.addActionListener((e) -> view.getController().createFunction());
+
     }
 
     public void requestFunction()

@@ -3,11 +3,11 @@ package model;
 
 public class RpnHelper
 {
-    static byte opPrior(String op)
+    static byte operationPriority(String operation)
     {
-        if (isFunc(op))
+        if (isFunction(operation))
             return 4;
-        switch (op)
+        switch (operation)
         {
             case "^":
                 return 3;
@@ -18,9 +18,9 @@ public class RpnHelper
         return 1;
     }
 
-    static boolean isFunc(String op)
+    static boolean isFunction(String function)
     {
-        switch(op)
+        switch(function)
         {
             case "sin":
             case "cos":
@@ -40,9 +40,9 @@ public class RpnHelper
         return false;
     }
 
-    static boolean isOp(String op)
+    static boolean isOperation(String operation)
     {
-        switch (op)
+        switch (operation)
         {
             case "-":
             case "+":
@@ -51,6 +51,6 @@ public class RpnHelper
             case "^":
                 return true;
         }
-        return isFunc(op);
+        return isFunction(operation);
     }
 }

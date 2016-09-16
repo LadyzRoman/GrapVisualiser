@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class ReversePolishNotationCreator
 {
-    public static String tRpn(String expression) throws Exception
+    public static String toReversePolishNotation(String expression) throws Exception
     {
         Locale.setDefault(Locale.ENGLISH);
         StringBuilder input = new StringBuilder(expression.replaceAll(" ", "").replaceAll(",", "."));
@@ -17,7 +17,7 @@ public class ReversePolishNotationCreator
             String a = input.substring(0, 1);
             for (int i = 6; i > 1; i--)
             {
-                if (input.length() > i && RpnHelper.isFunc(input.substring(0, i)))
+                if (input.length() > i && RpnHelper.isFunction(input.substring(0, i)))
                 {
                     a = input.substring(0, i);
                     input.delete(0, i - 1);
@@ -25,7 +25,7 @@ public class ReversePolishNotationCreator
                 }
             }
             input.delete(0, 1);
-            if (RpnHelper.isOp(a))
+            if (RpnHelper.isOperation(a))
             {
                 while (!stack.isEmpty())
                 {
@@ -35,9 +35,9 @@ public class ReversePolishNotationCreator
                         rpn.append("0");
                         isNegative = false;
                     }
-                    if (RpnHelper.isOp(b) && (RpnHelper.opPrior(a) <= RpnHelper.opPrior(b)))
+                    if (RpnHelper.isOperation(b) && (RpnHelper.operationPriority(a) <= RpnHelper.operationPriority(b)))
                     {
-                        if (RpnHelper.opPrior(a) == 3 && RpnHelper.opPrior(b) == 3) break;
+                        if (RpnHelper.operationPriority(a) == 3 && RpnHelper.operationPriority(b) == 3) break;
                         rpn.append(" ").append(b);
                         stack.pop();
                     } else break;
