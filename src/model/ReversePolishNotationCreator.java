@@ -14,7 +14,7 @@ public class ReversePolishNotationCreator
         boolean isNegative = false;
         while (input.length() != 0)
         {
-            String a = "";
+            String a = input.substring(0, 1);
             for (int i = 6; i > 1; i--)
             {
                 if (input.length() > i && RpnHelper.isFunc(input.substring(0, i)))
@@ -23,8 +23,8 @@ public class ReversePolishNotationCreator
                     input.delete(0, i - 1);
                     break;
                 }
-                a = input.substring(0, 1);
             }
+            input.delete(0, 1);
             if (RpnHelper.isOp(a))
             {
                 while (!stack.isEmpty())
@@ -57,7 +57,7 @@ public class ReversePolishNotationCreator
                     rpn.append("0 ");
                 }
                 stack.push(a);
-                if (input.charAt(1) == '-')
+                if (input.charAt(0) == '-')
                     isNegative = true;
             } else if (")".equals(a))
             {
@@ -78,7 +78,6 @@ public class ReversePolishNotationCreator
                 } else
                     rpn.append(a);
             }
-            input.delete(0, 1);
         }
         while (!stack.isEmpty())
         {

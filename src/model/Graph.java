@@ -78,12 +78,13 @@ public class Graph {
             throw new EmptyStringException();
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate prev = null;
-        for (double i = minX; i <= maxX; i += initStep) {
+        for (double i = minX; i < maxX; i += initStep) {
             double y = (getY(i));
             Coordinate current = new Coordinate(i, y, prev, this);
             coordinates.add(current);
             prev = current;
         }
+
         this.coordinates = coordinates;
         initCurrentCoordinates();
     }
@@ -162,6 +163,8 @@ public class Graph {
         currentCoordinates.clear();
         Coordinate prev = null;
         for (Coordinate c : coordinates) {
+            if (Double.isNaN(c.getY())) continue;
+
             double x = (int) (getD() * (c.getX() + getX() / 2));
             double y = (int) (getD() * (-c.getY() + getX() / 2));
             Coordinate current = new Coordinate(x, y, prev, this);

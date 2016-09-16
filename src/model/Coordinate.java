@@ -33,7 +33,7 @@ public class Coordinate
             int y2 = (int) y + graph.getY0();
             if (x2 < 0 || x1 > Graph.SIZE) return;
             if ((y1 > Graph.SIZE && y2 > Graph.SIZE)||(y1 < 0 && y2 < 0)) return;
-
+            if ((y1 > Graph.SIZE && y2 < 0)||(y1 < 0 && y2 > Graph.SIZE)) return;
             g.setColor(Color.DARK_GRAY);
             g.drawLine(x1, y1, x2, y2);
         }
