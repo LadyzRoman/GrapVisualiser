@@ -11,6 +11,7 @@ public class ReversePolishNotationCreator
         StringBuilder input = new StringBuilder(expression.replaceAll(" ", "").replaceAll(",", "."));
         StringBuilder rpn = new StringBuilder();
         Stack<String> stack = new Stack<>();
+        boolean isNegative = false;
         while (input.length() != 0)
         {
             String a = "";
@@ -29,10 +30,10 @@ public class ReversePolishNotationCreator
                 while (!stack.isEmpty())
                 {
                     String b = stack.peek();
-                    if (b.equals("?"))
+                    if (isNegative)
                     {
-                        b = stack.pop();
                         rpn.append("0");
+                        isNegative = false;
                     }
                     if (RpnHelper.isOp(b) && (RpnHelper.opPrior(a) <= RpnHelper.opPrior(b)))
                     {
@@ -44,21 +45,20 @@ public class ReversePolishNotationCreator
                 stack.push(a);
                 if (rpn.length() == 0 && stack.peek().equals("-"))
                 {
-                    stack.push("?");
+                    isNegative = true;
                 } else if (rpn.length() != 0)
                 {
                     rpn.append(" ");
                 }
             } else if ("(".equals(a))
             {
-                if (!stack.isEmpty() && stack.peek().equals("?"))
+                if (isNegative)
                 {
                     rpn.append("0 ");
-                    stack.pop();
                 }
                 stack.push(a);
                 if (input.charAt(1) == '-')
-                    stack.push("?");
+                    isNegative = true;
             } else if (")".equals(a))
             {
                 String c = stack.pop();
@@ -70,11 +70,11 @@ public class ReversePolishNotationCreator
 
             } else
             {
-                if (!stack.isEmpty() && stack.peek().equals("?"))
+                if (isNegative)
                 {
                     if (rpn.length() == 0 && !stack.isEmpty())
                         rpn.append("0 ").append(a);
-                    stack.pop();
+                    isNegative = false;
                 } else
                     rpn.append(a);
             }
