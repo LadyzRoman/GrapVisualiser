@@ -1,0 +1,95 @@
+package view;
+
+import controller.Controller;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+/**
+ * Created by Сергей on 08.07.2016.
+ */
+public class View extends JFrame
+{
+    private Controller controller;
+    private MenuPanel menu = new MenuPanel(this);
+    private GraphView graph = new GraphView(this);
+
+    Controller getController()
+    {
+        return controller;
+    }
+
+    public void setController(Controller controller)
+    {
+        this.controller = controller;
+    }
+
+    public View()
+    {
+        init();
+    }
+
+    private void init()
+    {
+        addKeyListener(new KeyAdapterImpl());
+        setTitle("Визуализатор графиков");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        graph.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        add(menu, BorderLayout.SOUTH);
+        add(graph, BorderLayout.CENTER);
+        setFocusable(true);
+        setResizable(false);
+        pack();
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private class KeyAdapterImpl extends KeyAdapter
+    {
+        @Override
+        public void keyPressed(KeyEvent e)
+        {
+            switch (e.getKeyCode())
+            {
+                case KeyEvent.VK_ADD:
+                    getController().resize(-10);
+                    break;
+                case KeyEvent.VK_SUBTRACT:
+                    getController().resize(10);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    getController().move(-1, 0);
+                    break;
+                case KeyEvent.VK_LEFT:
+                    getController().move(1, 0);
+                    break;
+                case KeyEvent.VK_UP:
+                    getController().move(0, 1);
+                    break;
+                case KeyEvent.VK_DOWN:
+                    getController().move(0, -1);
+                    break;
+            }
+        }
+    }
+
+    public String getFunction()
+    {
+        return menu.getFunction();
+    }
+
+    public void update()
+    {
+        graph.repaint();
+    }
+
+    public void requestFunction()
+    {
+        menu.requestFunction();
+    }
+
+
+}
