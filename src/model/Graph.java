@@ -134,6 +134,8 @@ public class Graph {
                 }
             }
         }
+        if (stack.size() > 1)
+            throw new Exception();
         return stack.pop();
     }
 

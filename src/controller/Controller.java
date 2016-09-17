@@ -44,7 +44,7 @@ public class Controller
         try
         {
             String expression = view.getFunction();
-            String rpnFunction = ReversePolishNotationCreator.toReversePolishNotation(expression);
+            String rpnFunction = new ReversePolishNotationCreator().toReversePolishNotation(expression);
             model.setFunction(rpnFunction);
             model.initCoordinates();
             view.requestFocus();
