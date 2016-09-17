@@ -11,8 +11,8 @@ public class MenuPanel extends JPanel
 
     private View view;
 
-    private JLabel jLabel1;
-    private JLabel jLabel2;
+    private JLabel title;
+    private JLabel yLabel;
     private JTextField function;
     private JTextPane funcInfo;
     private JTextPane moveInfo;
@@ -28,35 +28,32 @@ public class MenuPanel extends JPanel
 
         createButton = new JButton();
         function = new JTextField();
-        jLabel1 = new JLabel();
-        jLabel2 = new JLabel();
+        title = new JLabel();
+        yLabel = new JLabel();
         funcInfo = new JTextPane();
         moveInfo = new JTextPane();
 
-
-
         createButton.setText("Показать");
 
-        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel1.setText("Введите функцию");
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setText("Введите функцию");
 
-        jLabel2.setText("y=");
+        yLabel.setText("y=");
+        yLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
-                                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(title, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+                                )
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(88, Short.MAX_VALUE)
-                                .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(yLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(function, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(function, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(createButton))
                                         .addGroup(layout.createSequentialGroup()
@@ -67,18 +64,18 @@ public class MenuPanel extends JPanel
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel1)
+                                .addComponent(title)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(createButton)
                                         .addComponent(function, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2))
+                                        .addComponent(yLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING))
                                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        funcInfo.setText("Операции:\n" +
+ /*       funcInfo.setText("Операции:\n" +
                 "+\t-\t*\t/\t^\t)\t(\n" +
                 "sin\tcos\ttan\tasin\tacos\tatan\tlog\n" +
                 "log10\texp\tabs\tsignum\tsqrt\tcbrt");
@@ -94,7 +91,9 @@ public class MenuPanel extends JPanel
         moveInfo.setBackground(view.getBackground());
         moveInfo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         doc = moveInfo.getStyledDocument();
-        doc.setParagraphAttributes(0,doc.getLength(),center,false);
+        doc.setParagraphAttributes(0,doc.getLength(),center,false);*/
+
+
         view.getRootPane().setDefaultButton(createButton);
         createButton.addActionListener((e) -> view.getController().createFunction());
 

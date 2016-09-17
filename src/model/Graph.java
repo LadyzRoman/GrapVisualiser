@@ -11,7 +11,7 @@ public class Graph {
     private String function;
     private List<Coordinate> coordinates = new ArrayList<>();
     private List<Coordinate> currentCoordinates = new ArrayList<>();
-    private double initStep;
+    private double initialStep;
     private double minX;
     private double maxX;
     public final static int SIZE = 600;
@@ -54,11 +54,11 @@ public class Graph {
         this.function = rpn;
     }
 
-    public Graph(double minX, double maxX, double initStep) {
+    public Graph(double minX, double maxX, double initialStep) {
         this.function = "";
         this.minX = minX;
         this.maxX = maxX;
-        this.initStep = initStep;
+        this.initialStep = initialStep;
         this.axis = new Axis(this);
         x = 20;
         d = SIZE / x;
@@ -78,8 +78,8 @@ public class Graph {
             throw new EmptyStringException();
         List<Coordinate> coordinates = new ArrayList<>();
         Coordinate prev = null;
-        for (double i = minX; i < maxX; i += initStep) {
-            double y = (getY(i));
+        for (double i = minX; i < maxX; i += initialStep) {
+            double y = getY(i);
             Coordinate current = new Coordinate(i, y, prev, this);
             coordinates.add(current);
             prev = current;
@@ -168,6 +168,7 @@ public class Graph {
             double x = (int) (getD() * (c.getX() + getX() / 2));
             double y = (int) (getD() * (-c.getY() + getX() / 2));
             Coordinate current = new Coordinate(x, y, prev, this);
+
             if (current.equals(prev)) continue;
 
             prev = current;

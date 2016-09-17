@@ -36,7 +36,6 @@ public class View extends JFrame
         addKeyListener(new KeyAdapterImpl());
         setTitle("Визуализатор графиков");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        graph.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         add(menu, BorderLayout.SOUTH);
         add(graph, BorderLayout.CENTER);
         setFocusable(true);
