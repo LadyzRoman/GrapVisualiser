@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Сергей on 08.07.2016.
@@ -41,7 +43,6 @@ public class View extends JFrame
         setFocusable(true);
         setResizable(false);
         pack();
-
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -80,6 +81,23 @@ public class View extends JFrame
         return menu.getFunction();
     }
 
+    public String getMinX()
+    {
+        return menu.getMinX();
+    }
+
+
+    public String getMaxX()
+    {
+        return menu.getMaxX();
+    }
+
+    public String getStep()
+    {
+        return menu.getStep();
+    }
+
+
     public void update()
     {
         graph.repaint();
@@ -89,6 +107,5 @@ public class View extends JFrame
     {
         menu.requestFunction();
     }
-
 
 }

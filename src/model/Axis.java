@@ -16,16 +16,16 @@ public class Axis
 
     public void draw(Graphics g)
     {
-        int x0 = Graph.SIZE;
-        int x = x0 / 2 + graph.getX0();
-        int y = x0 / 2 + graph.getY0();
+        int size = Graph.SIZE;
+        int x = size / 2 + graph.getX0();
+        int y = size / 2 + graph.getY0();
         //draw axis
         g.setColor(Color.DARK_GRAY);
-        g.drawLine(x, 0, x, x0);
-        g.drawLine(0, y, x0, y);
+        g.drawLine(x, 0, x, size);
+        g.drawLine(0, y, size, y);
         //draw dots
         g.setColor(Color.BLACK);
-        for (int i = x, number = 0; i < x0; i += graph.getD(), number++)
+        for (int i = x, number = 0; i < size; i += graph.getD(), number++)
             drawDot(g, i, y, number);
 
         for (int i = x, number = 0; i > 0; i -= graph.getD(), number--)
@@ -34,7 +34,7 @@ public class Axis
         for (int i = y, number = 0; i > 0; i -= graph.getD(), number++)
             drawDot(g, x, i, number);
 
-        for (int i = y, number = 0; i < x0; i += graph.getD(), number--)
+        for (int i = y, number = 0; i < size; i += graph.getD(), number--)
             drawDot(g, x, i, number);
     }
 

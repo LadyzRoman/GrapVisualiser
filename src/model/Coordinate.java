@@ -21,17 +21,18 @@ public class Coordinate
     }
 
 
-    double getX() {
+    double getX()
+    {
         return x;
     }
 
-    double getY() {
+    double getY()
+    {
         return y;
     }
 
     public void draw(Graphics g)
     {
-        g.setColor(Color.DARK_GRAY);
         if (prev != null)
         {
             int x1 = (int) prev.x + graph.getX0();
@@ -40,29 +41,37 @@ public class Coordinate
             int y2 = (int) y + graph.getY0();
             //Проверка х на попадание в область
             if (x2 < 0 || x1 > Graph.SIZE) return;
-            //Проверка у на попадание в область
-            if ((y1 > Graph.SIZE && y2 > Graph.SIZE)||(y1 < 0 && y2 < 0)) return;
-            if ((y1 > Graph.SIZE && y2 < 0)||(y1 < 0 && y2 > Graph.SIZE)) return;
 
-            g.setColor(Color.DARK_GRAY);
+            //Проверка у на попадание в область
+            if ((y1 > Graph.SIZE && y2 > Graph.SIZE) || (y1 < 0 && y2 < 0)) return;
+
+            if ((y1 > Graph.SIZE && y2 < 0) || (y1 < 0 && y2 > Graph.SIZE)) return;
+
+
+            g.setColor(Color.blue);
             g.drawLine(x1, y1, x2, y2);
         }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o)
+    {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
 
         Coordinate that = (Coordinate) o;
 
-        if (Double.compare(that.x, x) != 0) return false;
-        return Double.compare(that.y, y) == 0;
+        return Double.compare(that.x, x) == 0 && Double.compare(that.y, y) == 0;
 
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result;
         long temp;
         temp = Double.doubleToLongBits(x);
@@ -71,6 +80,5 @@ public class Coordinate
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
-
 
 }

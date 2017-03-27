@@ -6,6 +6,8 @@ import model.Graph;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Сергей on 12.07.2016.
@@ -22,16 +24,25 @@ public class GraphView extends JPanel
 
     private void init()
     {
+
         setPreferredSize(new Dimension(Graph.SIZE, Graph.SIZE));
+        addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                view.requestFocus();
+            }
+        });
     }
 
     @Override
     public void paint(Graphics g)
     {
-        java.util.List<Coordinate> coordinates = getCoordinates();
-        g.setColor(Color.lightGray);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, getWidth(), getHeight());
         getAxis().draw(g);
+        java.util.List<Coordinate> coordinates = getCoordinates();
         coordinates.forEach(c -> c.draw(g));
     }
 

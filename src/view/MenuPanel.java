@@ -11,12 +11,14 @@ public class MenuPanel extends JPanel
 
     private View view;
 
-    private JLabel title;
     private JLabel yLabel;
     private JTextField function;
     private JTextPane funcInfo;
     private JTextPane moveInfo;
     private JButton createButton;
+    private JTextField minX;
+    private JTextField maxX;
+    private JTextField step;
 
     public MenuPanel(View view)
     {
@@ -25,59 +27,107 @@ public class MenuPanel extends JPanel
     }
 
     private void initComponents() {
+        function = new javax.swing.JTextField();
+        yLabel = new javax.swing.JLabel();
+        createButton = new javax.swing.JButton();
+        JLabel title = new javax.swing.JLabel();
+        JLabel jLabel2 = new javax.swing.JLabel();
+        JLabel jLabel3 = new javax.swing.JLabel();
+        JLabel jLabel4 = new javax.swing.JLabel();
+        step = new javax.swing.JTextField();
+        maxX = new javax.swing.JTextField();
+        minX = new javax.swing.JTextField();
+        funcInfo = new javax.swing.JTextPane();
+        moveInfo = new javax.swing.JTextPane();
 
-        createButton = new JButton();
-        function = new JTextField();
-        title = new JLabel();
-        yLabel = new JLabel();
-        funcInfo = new JTextPane();
-        moveInfo = new JTextPane();
+        yLabel.setText("y = ");
 
         createButton.setText("Показать");
 
-        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Введите функцию");
 
-        yLabel.setText("y=");
-        yLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel2.setText("Минимум");
 
-        GroupLayout layout = new GroupLayout(this);
+        jLabel3.setText("Максимум");
+        jLabel3.setToolTipText("");
+
+        jLabel4.setText("Шаг");
+
+        step.setText("0.01");
+
+        maxX.setText("20");
+
+        minX.setText("-20");
+
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(title, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-                                )
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(yLabel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(function, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(createButton))
+                                                .addComponent(yLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(function, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(createButton)
+                                                .addGap(20, 20, 20))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(40, 40, 40))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(minX, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(step)
+                                                                        .addComponent(maxX, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(funcInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(32, 32, 32)
+                                                .addComponent(moveInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
+                                .addContainerGap()
                                 .addComponent(title)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(createButton)
-                                        .addComponent(function, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(yLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING))
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(function, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(yLabel)
+                                        .addComponent(createButton))
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(funcInfo, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(minX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(maxX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel3))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(step, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel4)))
+                                        .addComponent(moveInfo))
+                                .addContainerGap(28, Short.MAX_VALUE))
         );
 
- /*       funcInfo.setText("Операции:\n" +
-                "+\t-\t*\t/\t^\t)\t(\n" +
-                "sin\tcos\ttan\tasin\tacos\tatan\tlog\n" +
+        funcInfo.setText("Операции:\n" +
+                "+\t-\t*\t/\t^\t)\t(\t" +
+                "sin\tcos\ttan\tasin\tacos\tatan\tlog\t" +
                 "log10\texp\tabs\tsignum\tsqrt\tcbrt");
         funcInfo.setBackground(view.getBackground());
         StyledDocument doc = funcInfo.getStyledDocument();
@@ -91,13 +141,17 @@ public class MenuPanel extends JPanel
         moveInfo.setBackground(view.getBackground());
         moveInfo.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         doc = moveInfo.getStyledDocument();
-        doc.setParagraphAttributes(0,doc.getLength(),center,false);*/
+        doc.setParagraphAttributes(0,doc.getLength(),center,false);
 
 
         view.getRootPane().setDefaultButton(createButton);
         createButton.addActionListener((e) -> view.getController().createFunction());
 
+
+
     }
+
+
 
     public void requestFunction()
     {
@@ -109,7 +163,21 @@ public class MenuPanel extends JPanel
         return function.getText();
     }
 
+    String getMinX()
+    {
+        return minX.getText();
+    }
 
+
+    String getMaxX()
+    {
+        return maxX.getText();
+    }
+
+    String getStep()
+    {
+        return step.getText();
+    }
 
 }
 

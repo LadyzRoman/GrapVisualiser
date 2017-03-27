@@ -1,6 +1,5 @@
 package controller;
 
-import exceptions.EmptyStringException;
 import model.Axis;
 import model.Coordinate;
 import model.Graph;
@@ -10,9 +9,7 @@ import view.View;
 import javax.swing.*;
 import java.util.List;
 
-/**
- * Created by Сергей on 12.07.2016.
- */
+
 public class Controller
 {
     private View view;
@@ -44,24 +41,83 @@ public class Controller
         try
         {
             String expression = view.getFunction();
-            String rpnFunction = new ReversePolishNotationCreator().toReversePolishNotation(expression);
-            model.setFunction(rpnFunction);
-            model.initCoordinates();
-            view.requestFocus();
+
+            if (validateData(expression))
+            {
+                double step = Double.parseDouble(view.getStep());
+                double minX = Double.parseDouble(view.getMinX());
+                double maxX = Double.parseDouble(view.getMaxX());
+                String rpnFunction = new ReversePolishNotationCreator().toReversePolishNotation(expression);
+
+                model.setMinX(minX);
+                model.setMaxX(maxX);
+                model.setInitialStep(step);
+                model.setFunction(rpnFunction);
+                model.initCoordinates();
+                view.requestFocus();
+            }
         }
-        catch (EmptyStringException e)
-        {
-            JOptionPane.showMessageDialog(view, "Не введена функция!", "Ошибка!", JOptionPane.ERROR_MESSAGE);
-            view.requestFunction();
-        }
-        catch (Exception e)
+        catch (UnsupportedOperationException e)
         {
             model.setFunction(rpn);
-            JOptionPane.showMessageDialog(view, "Введены некорректные данные!", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, e.getMessage(), "Ошибка!", JOptionPane.ERROR_MESSAGE);
             view.requestFunction();
         }
         view.update();
     }
+
+    private boolean validateData(String expression)
+    {
+        try
+        {
+            if (expression.equals(""))
+            {
+                JOptionPane.showMessageDialog(view, "Не введена функция", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            if (view.getMinX().equals(""))
+            {
+                JOptionPane.showMessageDialog(view, "Не введена нижняя граница", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            if (view.getMaxX().equals(""))
+            {
+                JOptionPane.showMessageDialog(view, "Не введена верхняя граница", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            if (view.getStep().equals(""))
+            {
+                JOptionPane.showMessageDialog(view, "Не введен шаг вычислений", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            double step = Double.parseDouble(view.getStep());
+            double minX = Double.parseDouble(view.getMinX());
+            double maxX = Double.parseDouble(view.getMaxX());
+
+            if (maxX < minX)
+            {
+                JOptionPane.showMessageDialog(view, "Минимальное значение не может быть больше, чем максимальное", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            if (step <= 0)
+            {
+                JOptionPane.showMessageDialog(view, "Шаг вычислений должен быть положительным", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(view, "Значение одного из параметров задано не верно", "Ошибка!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+
 
     public List<Coordinate> getCoordinates()
     {
